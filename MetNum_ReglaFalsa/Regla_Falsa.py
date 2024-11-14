@@ -1,6 +1,8 @@
 import numpy as np
 from math import *
 from prettytable import PrettyTable
+from math import e
+import math
 #Funcion para insertar la expresion algebraica
 def ecuacion():
     expr = input("Ecuacion a evaluar: ")
@@ -12,30 +14,30 @@ def funcion(expr, val):
     y = eval(expr)
     return y
 
+def valoresI():
+    a= float(input("Introduzca el valor de a: "))
+    b= float(input("Introduzca el valor de b: "))
+    return a,b 
+
 #Funcion para insertar la tolerancia del error
 def tolerancia():
     error = float(input("Tolerancia del error:  "))
     return error
 
 fx=ecuacion() #Pide la ecuacion
+a,b=valoresI()
 Tolerancia=tolerancia() #Pide la tolerancia
 
-faP=5   #Establece un valor para iniciar el bucle while
-i1=10000 #Establece desde que valor se evaluara hasta conseguir el cambio de signo
-#Bucle que evalua i1
-while(faP>0):
-    faP=funcion(fx,i1)
-    i1=i1-1
-#Se colocan los valores y se corrigen
-a=i1+1
-b=i1+2
+print(a,b)
+
 #Crea una tabla
 tabla= PrettyTable(["No.","a","f(a)","b","f(b)","c","f(c)","ErrorR","%Error"])
 tabla.title="Metodo de la regla falsa"
 #Se colocan valores iniciales para iniciar el bucle while
-error=abs(b-a)
+error=1
 i=1
 cOld=0
+
 #Bucle while en el que se lleva a cabo el metodo
 while(error>Tolerancia):
     #Se evaluan la funcion para los valores de a y b
