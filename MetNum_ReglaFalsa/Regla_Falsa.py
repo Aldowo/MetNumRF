@@ -28,8 +28,6 @@ fx=ecuacion() #Pide la ecuacion
 a,b=valoresI()
 Tolerancia=tolerancia() #Pide la tolerancia
 
-print(a,b)
-
 #Crea una tabla
 tabla= PrettyTable(["No.","a","f(a)","b","f(b)","c","f(c)","ErrorR","%Error"])
 tabla.title="Metodo de la regla falsa"
