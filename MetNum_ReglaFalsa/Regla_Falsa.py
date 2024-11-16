@@ -21,24 +21,38 @@ def valoresI():
 
 #Funcion para insertar la tolerancia del error
 def tolerancia():
-    error = float(input("Tolerancia del error:  "))
+    error = float(input("Cantidad de iteraciones a desarrollar:  "))
+    error = error+1
     return error
 
 fx=ecuacion() #Pide la ecuacion
-a,b=valoresI()
 Tolerancia=tolerancia() #Pide la tolerancia
 
-#Crea una tabla
-tabla= PrettyTable(["No.","a","f(a)","b","f(b)","c","f(c)","ErrorR","%Error"])
-tabla.title="Metodo de la regla falsa"
+
+#Crea la tabla donde se mostraran las posibles intersecciones
+tabla1= PrettyTable(["X","F(X)"])
+tabla1.title="Seleccione los valores a considerar"
+#Crea la tabla donde se mostraran las raices
+tabla2= PrettyTable(["No.","a","f(a)","b","f(b)","c","f(c)","ErrorR","%Error"])
+tabla2.title="Metodo de la regla falsa"
+i1=5
+while(i1>-6):
+    fxP=funcion(fx,i1)
+    tabla1.add_row([i1,"{0:.7f}".format(fxP)])
+    i1=i1-1
+print(tabla1)
+
+a,b=valoresI()
+
+
 #Se colocan valores iniciales para iniciar el bucle while
 error=1
 i=1
 cOld=0
 
 #Bucle while en el que se lleva a cabo el metodo
-while(error>Tolerancia):
-    #Se evaluan la funcion para los valores de a y b
+while(i<Tolerancia):
+    #Se evalua la funcion para los valores de a y b
     fa= funcion(fx,a)
     fb= funcion(fx,b)
     #Se calcula c y se evalua
@@ -57,11 +71,11 @@ while(error>Tolerancia):
     else:
         b=c
     #Se agrega una fila donde se insertaran los valores de esta iteracion    
-    tabla.add_row([i,"{0:.7f}".format(aOld),"{0:.7f}".format(fa),"{0:.7f}".format(bOld),"{0:.7f}".format(fb),
+    tabla2.add_row([i,"{0:.7f}".format(aOld),"{0:.7f}".format(fa),"{0:.7f}".format(bOld),"{0:.7f}".format(fb),
                    "{0:.7f}".format(c),"{0:.7f}".format(fc),"{0:.7f}".format(error),"{0:.7f}".format(error*100)])    
     i=i+1
 #Se imprime la tabla al completo
-print(tabla)
+print(tabla2)
 c="{0:.5f}".format(c)
 #Se imprime la raiz
 print(f"La raiz es: {c}")
